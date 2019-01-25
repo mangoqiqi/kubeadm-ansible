@@ -435,3 +435,15 @@ spec:
 ```
 ansible-playbook -i inventory/hosts -e @inventory/vars renew-certs.yml
 ```
+
+## 10. 导入猪齿鱼平台镜像
+
+如果需要单独导入猪齿鱼平台的镜像以加快安装速度，请在安装ansible的机器上执行：
+
+```
+wget -O ~/c7n.tar http://oss.saas.hand-china.com/c7n.tar
+
+export ANSIBLE_HOST_KEY_CHECKING=False
+
+ansible-playbook -i inventory/hosts load-choerodon-images.yml
+```

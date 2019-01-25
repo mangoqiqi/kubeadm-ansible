@@ -444,3 +444,15 @@ Pull requests are welcome! Follow [this link](https://github.com/choerodon/choer
 ```
 ansible-playbook -i inventory/hosts -e @inventory/vars renew-certs.yml
 ```
+
+## 10. Load Choerodon images
+
+If you need to separately import the images of the Choerodon platform to speed up the installation,Please execute on the machine where ansible is installed:
+
+```
+wget -O ~/c7n.tar http://oss.saas.hand-china.com/c7n.tar
+
+export ANSIBLE_HOST_KEY_CHECKING=False
+
+ansible-playbook -i inventory/hosts load-choerodon-images.yml
+```

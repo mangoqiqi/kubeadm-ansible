@@ -1,0 +1,23 @@
+---
+- hosts: all
+  tasks:
+  - name: Create tmp_c7n folder
+    file:
+      path: ~/tmp_c7n
+      state: directory
+      mode: 0755
+  - name: Copy images file
+    copy:
+      src: ~/c7n.tar
+      dest: ~/tmp_c7n
+      owner: root
+      group: root
+      mode: 0644
+    async: 0
+    poll: 10
+  - name: Loading images
+    shell: docker load -i c7n.tar
+    args:
+      chdir: ~/tmp_c7n
+  - name: Remove tmp_c7n folder
+    file: path=~/tmp_c7n state=absent
